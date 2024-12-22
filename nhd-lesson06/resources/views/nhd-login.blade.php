@@ -15,7 +15,6 @@
                 <div class="card-header">
                     <h1>nhd-Login</h1>
                 </div>
-
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="nhdEmail" class="form-label">Email </label>
@@ -33,14 +32,11 @@
                             placeholder="xxxx"/>
                         @error('nhdPass')
                             <span class="text-danger">{{$message}}</span>
-                        @enderror
-                          
+                        @enderror                         
                     </div>
                 </div>
-
                 <div class="card-footer">
                     <button class="btn btn-primary">Submit</button>
-
                     @if (Session::has('nhd-error'))
                         <div class="alert alert-danger">                            
                             {{ Session::get("nhd-error") }}                            
