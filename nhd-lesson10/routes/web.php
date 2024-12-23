@@ -30,3 +30,19 @@ Route::get('/nhdnhacc/create', [nhdNhaCCController::class, 'nhdcreate'])->name('
 Route::post('/nhdnhacc/create', [nhdNhaCCController::class, 'nhdcreatesubmit'])->name('nhdnhacc.nhdcreatesubmit');
 // delete
 Route::get('nhdnhacc/delete/{manhacc}',[nhdNhaCCController::class,'nhddelete'])->name('nhdnhacc.nhddelete');
+
+
+
+// pxuat
+use App\Http\Controllers\nhdpxuatController;
+Route::get('/nhdpxuat',[nhdpxuatController::class,'nhdlist'])->name('nhdpxuat.nhdlist');
+//chi tiet
+Route::get('/nhdpxuat/detail/{mavattu}',[nhdpxuatController::class,'nhddetail'])->name('nhdpxuat.nhddetail');
+// edit
+Route::get('/nhdpxuat/edit/{mavattu}',[nhdpxuatController::class,'nhdedit'])->name('nhdpxuat.nhdedit');
+Route::post('/nhdpxuat/edit/{mavattu}',[nhdpxuatController::class,'nhdeditsubmit'])->name('nhdpxuat.nhdeditsubmit');
+// create
+Route::get('/nhdpxuat/create',[nhdpxuatController::class,'nhdcreate'])->name('nhdpxuat.nhdcreate');
+Route::post('/nhdpxuat/create',[nhdpxuatController::class,'nhdcreatesubmit'])->name('nhdpxuat.nhdcreatesubmit');
+// delete
+Route::get('nhdpxuat/delete/{mavattu}',[nhdpxuatController::class,'nhddelete'])->name('nhdpxuat.nhddelete');
