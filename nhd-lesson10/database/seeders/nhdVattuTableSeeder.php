@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 
 
-class nhdVattuTableSeeder extends Seeder
+class nhdVatTuTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

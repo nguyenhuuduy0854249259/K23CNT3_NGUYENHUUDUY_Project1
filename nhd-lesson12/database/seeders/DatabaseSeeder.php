@@ -18,5 +18,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call([
+            nhd_quan_triTableSeeder::class,
+            nhd_loai_san_phamTableSeeder::class,
+            nhd_san_phamTableSeeder::class,
+            nhd_khach_hangTableSeeder::class,
+            nhd_hoa_donTableSeeder::class,
+            nhd_ct_hoa_donTableSeeder::class
+        ]);
     }
 }

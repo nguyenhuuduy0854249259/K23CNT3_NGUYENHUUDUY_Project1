@@ -46,3 +46,19 @@ Route::get('/nhdpxuat/create',[nhdpxuatController::class,'nhdcreate'])->name('nh
 Route::post('/nhdpxuat/create',[nhdpxuatController::class,'nhdcreatesubmit'])->name('nhdpxuat.nhdcreatesubmit');
 // delete
 Route::get('nhdpxuat/delete/{mavattu}',[nhdpxuatController::class,'nhddelete'])->name('nhdpxuat.nhddelete');
+
+
+
+// vattu
+use App\Http\Controllers\nhdVatTuController;
+Route::get('/nhdvattu',[nhdVatTuController::class,'nhdlist'])->name('nhdvattu.nhdlist');
+//chi tiet
+Route::get('/nhdvattu/detail/{mavattu}',[nhdVatTuController::class,'nhddetail'])->name('nhdvattu.nhddetail');
+// edit
+Route::get('/nhdvattu/edit/{mavattu}',[nhdVatTuController::class,'nhdedit'])->name('nhdvattu.nhdedit');
+Route::post('/nhdvattu/edit/{mavattu}',[nhdVatTuController::class,'nhdeditsubmit'])->name('nhdvattu.nhdeditsubmit');
+// create
+Route::get('/nhdvattu/create',[nhdVatTuController::class,'nhdcreate'])->name('nhdvattu.nhdcreate');
+Route::post('/nhdvattu/create',[nhdVatTuController::class,'nhdcreatesubmit'])->name('nhdvattu.nhdcreatesubmit');
+// delete
+Route::get('nhdvattu/delete/{mavattu}',[nhdVatTuController::class,'nhddelete'])->name('nhdvattu.nhddelete');
