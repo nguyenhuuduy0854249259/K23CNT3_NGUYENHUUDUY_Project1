@@ -19,19 +19,16 @@ class nhdquantriController extends Controller
     // POST login (authentication)
     public function nhdLoginSubmit(Request $request)
     {
-        // Validate tài khoản và mật khẩu
         $request->validate([
             'nhdTaiKhoan' => 'required|string',
             'nhdMatKhau' => 'required|string',
-        ]);        
+        ]);
 
-        // Tìm người dùng trong bảng nhd_quan_tri
         $user = nhdquantri::where('nhdTaiKhoan', $request->nhdTaiKhoan)->first();
 
-        // Kiểm tra mật khẩu
         if ($user && Hash::check($request->nhdMatKhau, $user->nhdMatKhau)) {
-            Session::put('nhdadmin', $user);
-            return redirect('/dashboard'); // Chuyển hướng đến dashboard
+            Session::put('nhdadmins', $user);
+            return redirect('/dashboard');
         } else {
             return back()->withErrors(['message' => 'Tài khoản hoặc mật khẩu không chính xác']);
         }

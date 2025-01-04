@@ -20,9 +20,20 @@ Route::get('/', function () {
 });
 
 #admins - route
-route::get('/nhd-admins',function(){
+Route::get('/nhd-admins',function(){
     return view('nhdadmins.index');
 });
+Route::get('/dashboard', function () {
+    return view('nhdadmins.index'); // Hoặc tên view mà bạn muốn hiển thị sau khi đăng nhập
+})->name('dashboard');
+
+
+//use App\Http\Controllers\nhdadminController;
+//Route::post('/nhd-login', [nhdadminController::class, 'nhdLoginSubmit'])->name('nhdadmins.nhdLoginSubmit');
+//login
+use App\Http\Controllers\nhdquantriController;         // CẦN CHÚ Ý
+Route::get('/admins/nhd-login',[nhdquantriController::class,'nhdLogin'])->name('nhdadmins.nhdLogin');
+Route::post('/admins/nhd-login',[nhdquantriController::class,'nhdLoginSubmit'])->name('nhdadmins.nhdLoginSubmit');
 
 
 // loaisanpham
@@ -39,14 +50,6 @@ Route::post('/nhd-admins/nhdloaisanpham/nhd-edit',[nhdloaisanphamController::cla
 Route::get('/nhd-admins/nhdloaisanpham/nhd-detail/{id}',[nhdloaisanphamController::class,'nhdGetDetail'])->name('nhdadmins.nhdloaisanpham.nhdGetDetail');
 // delete
 Route::get('/nhd-admins/nhdloaisanpham/nhd-delete/{id}',[nhdloaisanphamController::class,'nhdDelete'])->name('nhdadmins.nhdloaisanpham.nhdDelete');
-
-
-//use App\Http\Controllers\nhdadminController;
-//Route::post('/nhd-login', [nhdadminController::class, 'nhdLoginSubmit'])->name('nhdadmins.nhdLoginSubmit');
-//login
-use App\Http\Controllers\nhdquantriController;         // CẦN CHÚ Ý
-Route::get('/admins/nhd-login',[nhdquantriController::class,'nhdLogin'])->name('nhdadmins.nhdLogin');
-Route::post('/admins/nhd-login',[nhdquantriController::class,'nhdLoginSubmit'])->name('nhdadmins.nhdLoginSubmit');
 
 
 // Quản trị Viên--------------------------------------------------------------------------------------------------------------------------------------

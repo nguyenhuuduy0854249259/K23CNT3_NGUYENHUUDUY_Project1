@@ -114,7 +114,6 @@
                         <strong>Thành công:</strong> {{ session('success') }}
                     </div>
             @endif 
-
     
             <form action="{{ route('nhdadmins.nhdLoginSubmit') }}" method="POST">
                 @csrf
