@@ -5,7 +5,8 @@
     <div class="container border">
         <div class="row">
             <div class="col">
-                <form action="{{route('nhdadmins.nhdloaisanpham.nhdCreateSunmit')}}" method="POST">
+                <form action="{{ route('nhdadmins.nhdloaisanpham.nhdCreateSubmit') }}" method="POST">
+
                     @csrf
                     <div class="card">
                         <div class="card-header">

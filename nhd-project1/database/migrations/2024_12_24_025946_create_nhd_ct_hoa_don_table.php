@@ -10,21 +10,19 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('nhd_ct_hoa_don', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('nhdHoaDonID')->unsigned();  // Thêm unsigned() cho khóa ngoại
-            $table->foreign('nhdHoaDonID')->references('id')->on('nhd_hoa_don')->onDelete('cascade'); // Định nghĩa khóa ngoại
-
-            $table->bigInteger('nhdSanPhamID')->unsigned(); // Thêm unsigned() cho khóa ngoại
-            $table->foreign('nhdSanPhamID')->references('id')->on('nhd_san_pham')->onDelete('cascade'); // Định nghĩa khóa ngoại
-
-            $table->integer('nhdSoLuongMua');
-            $table->float('nhdDonGiaMua');
-            $table->decimal('nhdThanhTien', 15, 2);  // Định nghĩa lại column này mà không cần change()
-            $table->tinyInteger('nhdTrangThai');
-            $table->timestamps();
-        });
+{
+    Schema::create('nhd_ct_hoa_don', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('nhdHoaDonID')->comment('Mã hóa đơn');
+        $table->foreign('nhdHoaDonID')->references('id')->on('nhd_hoa_don')->onDelete('cascade');
+        $table->unsignedBigInteger('nhdSanPhamID')->comment('Mã sản phẩm');
+        $table->foreign('nhdSanPhamID')->references('id')->on('nhd_san_pham')->onDelete('cascade');
+        $table->integer('nhdSoLuongMua')->comment('Số lượng mua');
+        $table->decimal('nhdDonGiaMua', 15, 2)->comment('Đơn giá mua');
+        $table->decimal('nhdThanhTien', 15, 2)->comment('Thành tiền');
+        $table->tinyInteger('nhdTrangThai')->default(0)->comment('0: Chưa xử lý, 1: Đã xử lý');
+        $table->timestamps();
+    });
     }
 
     /**

@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('nhd_loai_san_pham', function (Blueprint $table) {
-            $table->id(); // Cột ID tự động
-            $table->string('nhdMaLoai', 10)->unique(); // Cột mã loại
-            $table->string('nhdTenLoai', 255);
-            $table->tinyInteger('nhdTrangThai');
-            $table->timestamps(); // Cột created_at và updated_at
+            $table->id(); // ID tự động tăng
+            $table->string('nhdMaLoai', 10)->unique()->comment('Mã loại sản phẩm'); // Mã loại duy nhất
+            $table->string('nhdTenLoai', 255)->comment('Tên loại sản phẩm');
+            $table->tinyInteger('nhdTrangThai')->default(0)->comment('0: Hiển thị, 1: Khóa');
+            $table->timestamps();
         });
     }
 

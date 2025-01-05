@@ -9,21 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('nhd_san_pham', function (Blueprint $table) {
-            $table->id();
-            $table->string('nhdMaSanPham',255)->unique();
-            $table->string('nhdTenSanPham',255);
-            $table->string('nhdHinhAnh',0,255);
-            $table->integer('nhdSoLuong');
-            $table->float('nhdDonGia');
-            $table->bigInteger('nhdMaLoai')->references('id')->on('nhd_loai_san_pham');
-            $table->tinyInteger('nhdTrangThai');
-            $table->timestamps();
-            
-        });
-    }
+    public function up()
+{
+    Schema::create('nhd_san_pham', function (Blueprint $table) {
+        $table->id();
+        $table->string('nhdMaSanPham')->comment('Mã sản phẩm');
+        $table->string('nhdTenSanPham')->comment('Tên sản phẩm');
+        $table->string('nhdHinhAnh')->comment('Hình ảnh sản phẩm');
+        $table->integer('nhdSoLuong')->comment('Số lượng sản phẩm');
+        $table->decimal('nhdDonGia', 15, 2)->comment('Đơn giá sản phẩm');
+        $table->string('nhdMaLoai', 10)->comment('Mã loại sản phẩm');
+        $table->tinyInteger('nhdTrangThai')->default(0)->comment('0: Hiển thị, 1: Khóa');
+        $table->timestamps();
+    });
+}
+
+
 
     /**
      * Reverse the migrations.

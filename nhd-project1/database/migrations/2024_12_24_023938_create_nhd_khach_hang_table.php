@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('nhd_khach_hang', function (Blueprint $table) {
             $table->id();
-            $table->string('nhdMaKhachHang')->unique();  // Thêm cột nhdMaKhachHang
-            $table->string('nhdKhachHang', 255)->unique(); // Đảm bảo cột này có dữ liệu duy nhất
-            $table->string('nhdHoTenKhachHang', 255);    
-            $table->string('nhdEmail', 255);
-            $table->string('nhdMatKhau', 255);
-            $table->string('nhdDienThoai', 255);
-            $table->string('nhdDiaChi', 255);
-            $table->date('nhdNgayDangKy');
-            $table->tinyInteger('nhdTrangThai');
+            $table->string('nhdMaKhachHang')->unique()->comment('Mã khách hàng');
+            $table->string('nhdKhachHang', 255)->nullable()->unique()->comment('Tài khoản khách hàng');
+            $table->string('nhdHoTenKhachHang', 255)->comment('Họ tên khách hàng');
+            $table->string('nhdEmail', 255)->unique()->comment('Email khách hàng');
+            $table->string('nhdMatKhau', 255)->comment('Mật khẩu khách hàng');
+            $table->string('nhdDienThoai', 255)->comment('Số điện thoại');
+            $table->string('nhdDiaChi', 255)->comment('Địa chỉ khách hàng');
+            $table->date('nhdNgayDangKy')->comment('Ngày đăng ký');
+            $table->tinyInteger('nhdTrangThai')->default(0)->comment('0: Hoạt động, 1: Bị khóa');
             $table->timestamps();
         });
     }

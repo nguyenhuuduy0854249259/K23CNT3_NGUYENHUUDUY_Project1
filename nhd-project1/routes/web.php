@@ -23,6 +23,8 @@ Route::get('/', function () {
 Route::get('/nhd-admins',function(){
     return view('nhdadmins.index');
 });
+
+//cần chú ý
 Route::get('/dashboard', function () {
     return view('nhdadmins.index'); // Hoặc tên view mà bạn muốn hiển thị sau khi đăng nhập
 })->name('dashboard');
@@ -42,7 +44,7 @@ use App\Http\Controllers\nhdloaisanphamController;
 Route::get('/nhd-admins/nhdloaisanpham',[nhdloaisanphamController::class,'nhdList'])->name('nhdadims.nhdloaisanpham');
 //create
 Route::get('/nhd-admins/nhdloaisanpham/nhd-create',[nhdloaisanphamController::class,'nhdCreate'])->name('nhdadmins.nhdloaisanpham.nhdcreate');
-Route::post('/nhd-admins/nhdloaisanpham/nhd-create',[nhdloaisanphamController::class,'nhdCreateSunmit'])->name('nhdadmins.nhdloaisanpham.nhdCreateSunmit');
+Route::post('/nhd-admins/nhdloaisanpham/nhd-create', [nhdloaisanphamController::class, 'nhdCreateSubmit'])->name('nhdadmins.nhdloaisanpham.nhdCreateSubmit');
 // edit
 Route::get('/nhd-admins/nhdloaisanpham/nhd-edit/{id}',[nhdloaisanphamController::class,'nhdEdit'])->name('nhdadmins.nhdloaisanpham.nhdEdit');
 Route::post('/nhd-admins/nhdloaisanpham/nhd-edit',[nhdloaisanphamController::class,'nhdEditSubmit'])->name('nhdadmins.nhdloaisanpham.nhdEditSubmit');

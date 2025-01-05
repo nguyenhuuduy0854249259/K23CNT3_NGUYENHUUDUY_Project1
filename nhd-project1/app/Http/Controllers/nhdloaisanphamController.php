@@ -23,22 +23,29 @@ class nhdloaisanphamController extends Controller
         return view('nhdadmins.nhdloaisanpham.nhd-create');
     }
 
-    public function nhdCreateSunmit(Request $request)
-    {
-        $validatedData = $request->validate([
-            'nhdMaLoai' => 'required|unique:nhd_loai_san_pham,nhdMaLoai',  // Kiểm tra mã loại không trống và duy nhất
-            'nhdTenLoai' => 'required|string|max:255',  // Kiểm tra tên loại không trống và là chuỗi
-            'nhdTrangThai' => 'required|in:0,1',  // Trạng thái phải là 0 hoặc 1
-        ]);
-        //ghi dữ liệu xuống db
-        $nhdloaisanpham = new nhdloaisanpham;
-        $nhdloaisanpham->nhdMaLoai = $request->nhdMaLoai;
-        $nhdloaisanpham->nhdTenLoai = $request->nhdTenLoai;
-        $nhdloaisanpham->nhdTrangThai = $request->nhdTrangThai;
+    public function nhdCreateSubmit(Request $request)
+{
+    $validatedData = $request->validate([
+        'nhdMaLoai' => 'required|string|unique:nhd_loai_san_pham,nhdMaLoai|max:255',
+        'nhdTenLoai' => 'required|string|max:255',
+        'nhdTrangThai' => 'required|in:0,1',
+    ]);
 
-        $nhdloaisanpham->save();
-        return redirect()->route('nhdadims.nhdloaisanpham');
+    try {
+        // Tạo loại sản phẩm mới
+        $nhdloaiSanPham = new nhdloaisanpham;
+        $nhdloaiSanPham->nhdMaLoai = $request->nhdMaLoai;
+        $nhdloaiSanPham->nhdTenLoai = $request->nhdTenLoai;
+        $nhdloaiSanPham->nhdTrangThai = $request->nhdTrangThai;
+        $nhdloaiSanPham->save();
+
+        return redirect()->route('nhdadims.nhdloaisanpham')
+            ->with('success', 'Thêm loại sản phẩm mới thành công!');
+    } catch (\Exception $e) {
+        return back()->with('error', 'Có lỗi xảy ra: ' . $e->getMessage())->withInput();
     }
+}
+
 
     public function nhdEdit($id)
     {
